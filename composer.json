@@ -1,0 +1,37 @@
+{
+    "name": "bageur/karir",
+    "description": "kerennya membuat api karir hanya dengan install ini.",
+    "keywords": [
+        "laravel",
+        "karir",
+        "bageur"
+    ],
+    "homepage": "https://github.com/bageur/karir",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bageur Solusi Indonesia",
+            "email": "info@bageur.id",
+            "homepage": "https://bageur.id",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bageur\\Karir\\": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1"
+        },
+        "laravel": {
+            "providers": [
+                "Bageur\\Karir\\ServiceProvider"
+            ]
+        }
+    }
+}
