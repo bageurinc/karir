@@ -29,6 +29,23 @@ class karir extends Model
         $query->join('bgr_karir_perusahaan','bgr_karir_perusahaan.id','bgr_karir.perusahaan_id');
         $query->join('bgr_indonesia_provinsi','bgr_indonesia_provinsi.id','bgr_karir_perusahaan.provinsi');
         $query->join('bgr_indonesia_kabupaten','bgr_indonesia_kabupaten.id','bgr_karir_perusahaan.kota');
+
+        if($request->tag){
+            $explode = explode(',',$request->tag);
+            $query->where(function ($qq) use ($explode) {
+                foreach ($explode as $key => $value) {
+                    if($key == 0){
+                        $qq->where(function ($q) use($value) {
+                            $q->whereJsonContains('tags', $value);
+                        });
+                    }else{
+                        $qq->orWhere(function ($q) use($value) {
+                            $q->whereJsonContains('tags', $value);
+                        });
+                    }
+                }
+            });
+        }
         $searchqry .= ")";
 
         if($request->kota){
@@ -55,4 +72,10 @@ class karir extends Model
         }
 
     }
+
+    public function perusahaan()
+    {
+         return $this->hasOne('Bageur\Karir\Model\perusahaan','id','perusahaan_id');
+    }  
+    
 }

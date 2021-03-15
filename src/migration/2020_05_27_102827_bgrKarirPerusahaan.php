@@ -27,8 +27,10 @@ class BgrKarirPerusahaan extends Migration
             $table->string('alamat')->nullable();
             $table->string('web')->nullable();
             $table->string('fb')->nullable();
-            $table->string('ib')->nullable();
+            $table->string('ig')->nullable();
             $table->string('linkedin')->nullable();
+            $table->boolean('verifikasi')->default(0);
+            $table->boolean('vendor')->default(0);
             $table->enum('status',['Aktif','Tidak Aktif'])->default('Aktif');
             $table->timestamps();
         });

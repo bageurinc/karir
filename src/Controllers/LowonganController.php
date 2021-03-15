@@ -48,9 +48,13 @@ class LowonganController extends Controller
             $input                      = new karir;
             $input->perusahaan_id       = $request->perusahaan;
             $input->judul               = $request->judul;
+            $input->judul_seo           = \Str::slug($request->judul,'-');
             $input->posisi              = $request->posisi;
             $input->tags                = json_encode($request->tags);
             $input->type_pekerjaan      = $request->type_pekerjaan;
+            $input->fresh_graduate      = $request->fresh_graduate;
+            $input->pengalaman_mulai    = $request->pengalaman_mulai;
+            $input->pengalaman_selesai  = $request->pengalaman_selesai;
             $input->remote              = $request->remote;
             $input->matauang            = $request->matauang;
             $input->kualifikasi         = json_encode($request->kualifikasi);

@@ -17,9 +17,13 @@ class BgrKarir extends Migration
             $table->id();
             $table->unsignedBigInteger('perusahaan_id')->index();
             $table->string('judul');
+            $table->string('judul_seo');
             $table->string('posisi');
             $table->json('tags')->nullable();
             $table->string('type_pekerjaan');
+            $table->boolean('fresh_graduate')->default(1);
+            $table->double('pengalaman_mulai')->nullable();
+            $table->double('pengalaman_selesai')->nullable();
             $table->string('remote');
             $table->string('matauang');
             $table->json('kualifikasi')->nullable();

@@ -4,13 +4,17 @@ namespace Bageur\Karir\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Bageur\Karir\Model\perusahaan;
-
+use Auth;
 class PerusahaanController extends Controller
 {
 
     public function index(Request $request)
     {
-        return perusahaan::datatable($request);
+        $query =  perusahaan::query();
+        if(Auth::guard('api_mobile')->check()){
+           $query->where('user_id',Auth::guard('api_mobile')->id()); 
+           return $query->datatable($request); 
+        }
     }
 
     public function store(Request $request)
@@ -27,7 +31,7 @@ class PerusahaanController extends Controller
             'alamat'        => 'required',
             'web'           => 'nullable|url',
             'fb'            => 'nullable|url',
-            'ib'            => 'nullable|url',
+            'ig'            => 'nullable|url',
             'linkedin'      => 'nullable|url',
         ];
         $validator = \Validator::make($request->all(), $rules);
@@ -44,6 +48,7 @@ class PerusahaanController extends Controller
             return ['status' => false , 'err' => $err];
         }else{
             $input              = new perusahaan;
+            $input->user_id      = Auth::guard('api_mobile')->id();
             $input->foto      = $request->foto;
             $input->keterangan      = $request->keterangan;
             $input->perusahaan      = $request->perusahaan;
@@ -55,7 +60,7 @@ class PerusahaanController extends Controller
             $input->alamat      = $request->alamat;
             $input->web         = $request->web;
             $input->fb      = $request->fb;
-            $input->ib      = $request->ib;
+            $input->ig      = $request->ig;
             $input->linkedin        = $request->linkedin;
             $input->save();
              return ['status' => true];

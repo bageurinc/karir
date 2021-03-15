@@ -4,26 +4,13 @@ namespace Bageur\Karir\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class perusahaan extends Model
+class lamaran extends Model
 {
-    protected $table   = 'bgr_karir_perusahaan';
-
-    protected $appends = ['avatar','nama_provinsi','nama_kota'];
-    
-    public function getAvatarAttribute() {
-        return \Bageur::g_gambar($this->foto,'perusahaan',false,'solo')['base64'];
-    }
-    public function getNamaProvinsiAttribute() {
-        return \Bageur\Indonesia\model\ind_provinsi::find($this->provinsi)->nama;
-    }
-    
-    public function getNamaKotaAttribute() {
-        return \Bageur\Indonesia\model\ind_kota::find($this->kota)->nama;
-    }
+    protected $table   = 'bgr_karir_lamaran';
 
     public function scopeDatatable($query,$request,$page=12)
     {
-         $search       = ["perusahaan"];
+         $search       = ["perusahaan","judul","posisi"];
         $searchqry    = '';
 
         $searchqry = "(";
@@ -34,7 +21,9 @@ class perusahaan extends Model
                 $searchqry .= "OR lower($value) like '%".strtolower($request->search)."%'";
             }
         } 
-
+        $query->select('bgr_karir_lamaran.*','bgr_karir_perusahaan.foto','bgr_karir_perusahaan.perusahaan','bgr_karir.judul','bgr_karir.posisi');
+        $query->join('bgr_karir_perusahaan','bgr_karir_perusahaan.id','bgr_karir_lamaran.perusahaan_id');
+        $query->join('bgr_karir','bgr_karir.id','bgr_karir_lamaran.karir_id');
         $searchqry .= ")";
         if(@$request->sort_by){
             if(@$request->sort_by != null){
