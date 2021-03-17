@@ -77,5 +77,10 @@ class karir extends Model
     {
          return $this->hasOne('Bageur\Karir\Model\perusahaan','id','perusahaan_id');
     }  
+
+    public function bookmark()
+    {
+         return $this->hasOne('Bageur\Karir\Model\bookmark','karir_id','id');
+    }  
     
 }
