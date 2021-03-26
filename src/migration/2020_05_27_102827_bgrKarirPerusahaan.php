@@ -18,7 +18,7 @@ class BgrKarirPerusahaan extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->uuid('foto')->nullable();
             $table->string('perusahaan')->nullable();
-            $table->text('keterangan_singkat')->nullable();
+            $table->text('keterangan')->nullable();
             $table->string('email')->nullable();
             $table->string('notelp')->nullable();
             $table->string('nowa')->nullable();
