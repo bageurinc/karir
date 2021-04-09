@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class lamaran extends Model
 {
     protected $table   = 'bgr_karir_lamaran';
+    protected $appends = ['avatar'];
 
+    public function getAvatarAttribute() {
+        return \Bageur::g_gambar($this->foto,'perusahaan',false,'solo');
+    }
     public function scopeDatatable($query,$request,$page=12)
     {
          $search       = ["perusahaan","judul","posisi"];
@@ -20,7 +24,7 @@ class lamaran extends Model
             }else{
                 $searchqry .= "OR lower($value) like '%".strtolower($request->search)."%'";
             }
-        } 
+        }
         $query->select('bgr_karir_lamaran.*','bgr_karir_perusahaan.foto','bgr_karir_perusahaan.perusahaan','bgr_karir.judul','bgr_karir.posisi');
         $query->join('bgr_karir_perusahaan','bgr_karir_perusahaan.id','bgr_karir_lamaran.perusahaan_id');
         $query->join('bgr_karir','bgr_karir.id','bgr_karir_lamaran.karir_id');
