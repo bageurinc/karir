@@ -13,9 +13,10 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        // include __DIR__.'/routes/web.php';
-        // $this->app->make('Bageur\Karir\Controllers\KarirMembersController');
-        // $this->app->make('Bageur\Karir\Controllers\PerusahaanController');
+        $this->app->make('Bageur\Karir\Controllers\LowonganController');
+        $this->app->make('Bageur\Karir\Controllers\PerusahaanController');
+        $this->app->make('Bageur\Karir\Controllers\KarirMembersController');
+        $this->app->make('Bageur\Karir\Controllers\LamaranController');
     }
 
     /**
