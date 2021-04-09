@@ -12,8 +12,8 @@ class LowonganController extends Controller
     public function index(Request $request)
     {
         $query =  karir::query();
-        if(Auth::guard('api_mobile')->check()){
-           $query->where('user_id',Auth::guard('api_mobile')->id());
+        if(\Auth::guard('api_mobile')->check()){
+           $query->where('user_id',\Auth::guard('api_mobile')->id());
            return $query->datatable($request);
         }
     }
