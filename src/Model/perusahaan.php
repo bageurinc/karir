@@ -3,6 +3,8 @@
 namespace Bageur\Karir\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Bageur\Indonesia\Model\ind_provinsi;
+use Bageur\Indonesia\Model\ind_kota;
 
 class perusahaan extends Model
 {
@@ -14,11 +16,11 @@ class perusahaan extends Model
         return \Bageur::g_gambar($this->foto,'perusahaan',false,'solo')['base64'];
     }
     public function getNamaProvinsiAttribute() {
-        return \Bageur\Indonesia\model\ind_provinsi::find($this->provinsi)->nama;
+        return ind_provinsi::find($this->provinsi)->nama;
     }
     
     public function getNamaKotaAttribute() {
-        return \Bageur\Indonesia\model\ind_kota::find($this->kota)->nama;
+        return ind_kota::find($this->kota)->nama;
     }
 
     public function scopeDatatable($query,$request,$page=12)
