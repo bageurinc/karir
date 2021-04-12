@@ -76,4 +76,10 @@ class LowonganController extends Controller
         }
     }
 
+    public function destroy($id)
+    {
+        $delete = karir::findOrFail($id);
+        $delete->delete();
+        return response(['status' => true ,'text'    => 'has deleted'], 200);
+    }
 }
