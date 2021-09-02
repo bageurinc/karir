@@ -12,9 +12,9 @@ class PerusahaanController extends Controller
     {
         $query =  perusahaan::query();
         if(Auth::guard('api_mobile')->check()){
-           $query->where('user_id',Auth::guard('api_mobile')->id()); 
+           $query->where('user_id',Auth::guard('api_mobile')->id());
         }
-        return $query->datatable($request); 
+        return $query->datatable($request);
     }
 
     public function store(Request $request)
@@ -26,8 +26,8 @@ class PerusahaanController extends Controller
             // 'email'         => 'required|email',
             // 'notelp'        => 'required',
             // 'nowa'          => 'required',
-            'provinsi'      => 'required',
-            'kota'          => 'required',
+            // 'provinsi'      => 'required',
+            // 'kota'          => 'required',
             // 'alamat'        => 'required',
             'web'           => 'nullable|url',
             'fb'            => 'nullable|url',
@@ -53,6 +53,7 @@ class PerusahaanController extends Controller
             $input->keterangan      = $request->keterangan;
             $input->perusahaan      = $request->perusahaan;
             $input->email       = $request->email;
+            $input->cc_email       = $request->cc_email;
             $input->notelp      = $request->notelp;
             $input->nowa        = $request->nowa;
             $input->provinsi        = $request->provinsi;
@@ -69,7 +70,7 @@ class PerusahaanController extends Controller
     public function show($id)
     {
         $query =  perusahaan::where('user_id',Auth::guard('api_mobile')->id())->find($id);
-        return $query; 
+        return $query;
     }
 
     public function update(Request $request,$id)
@@ -81,8 +82,8 @@ class PerusahaanController extends Controller
             // 'email'         => 'required|email',
             // 'notelp'        => 'required',
             // 'nowa'          => 'required',
-            'provinsi'      => 'required',
-            'kota'          => 'required',
+            // 'provinsi'      => 'required',
+            // 'kota'          => 'required',
             // 'alamat'        => 'required',
             'web'           => 'nullable|url',
             'fb'            => 'nullable|url',
@@ -108,6 +109,7 @@ class PerusahaanController extends Controller
             $input->keterangan      = $request->keterangan;
             $input->perusahaan      = $request->perusahaan;
             $input->email       = $request->email;
+            $input->cc_email       = $request->cc_email;
             $input->notelp      = $request->notelp;
             $input->nowa        = $request->nowa;
             $input->provinsi        = $request->provinsi;

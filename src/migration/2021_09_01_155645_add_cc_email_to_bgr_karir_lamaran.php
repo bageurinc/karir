@@ -13,7 +13,7 @@ class AddCcEmailToBgrKarirLamaran extends Migration
      */
     public function up()
     {
-        Schema::table('bgr_karir_lamaran', function (Blueprint $table) {
+        Schema::table('bgr_karir_perusahaan', function (Blueprint $table) {
             $table->longText('cc_email')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddCcEmailToBgrKarirLamaran extends Migration
      */
     public function down()
     {
-        Schema::table('bgr_karir_lamaran', function (Blueprint $table) {
+        Schema::table('bgr_karir_perusahaan', function (Blueprint $table) {
             //
         });
     }
