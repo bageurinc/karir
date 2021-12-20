@@ -18,12 +18,16 @@ class perusahaan extends Model
     public function getNamaProvinsiAttribute() {
         if ($this->provinsi != null) {
             return ind_provinsi::find($this->provinsi)->nama;
+        } else {
+            return ' ';
         }
     }
 
     public function getNamaKotaAttribute() {
         if ($this->kota != null) {
             return ind_kota::find($this->kota)->nama;
+        } else {
+            return ' ';
         }
     }
 
