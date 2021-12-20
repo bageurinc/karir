@@ -17,7 +17,11 @@ class perusahaan extends Model
     }
     public function getNamaProvinsiAttribute() {
         if ($this->provinsi != null) {
-            return ind_provinsi::find($this->provinsi)->nama;
+            try {
+                return ind_provinsi::find($this->provinsi)->nama;
+            } catch (\Throwable $th) {
+                return ' ';
+            }
         } else {
             return ' ';
         }
@@ -25,7 +29,11 @@ class perusahaan extends Model
 
     public function getNamaKotaAttribute() {
         if ($this->kota != null) {
-            return ind_kota::find($this->kota)->nama;
+            try {
+                return ind_kota::find($this->kota)->nama;
+            } catch (\Throwable $th) {
+                return ' ';
+            }
         } else {
             return ' ';
         }
